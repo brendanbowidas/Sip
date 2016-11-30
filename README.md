@@ -1,6 +1,6 @@
 # Sip
 
-**TODO: Add description**
+Under active development, unusable at the moment
 
 ## Installation
 
@@ -21,4 +21,3 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:sip]]
     end
     ```
-

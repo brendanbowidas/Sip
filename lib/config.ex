@@ -7,9 +7,8 @@ defmodule Sip.Config do
     Find '.sip' config file in the root directory from any child directory in the project
   """
   def find_root do
-    working_dir = System.cwd
-    length = String.length(working_dir) + 1
-    traverse_path(working_dir)
+    System.cwd
+    |> traverse_path
   end
 
   @doc """

@@ -1,6 +1,8 @@
 defmodule Sip.Config do
+
   def get_config(root_dir) do
-    #TODO read config file from result of find_root
+    {_ok, file} = File.read(root_dir)
+    Poison.decode!(file)
   end
 
   @doc """
@@ -9,6 +11,7 @@ defmodule Sip.Config do
   def find_root do
     System.cwd
     |> traverse_path
+    |>get_config
   end
 
   @doc """

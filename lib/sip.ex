@@ -1,7 +1,8 @@
 defmodule Sip do
   @moduledoc """
     Options:
-    --ops - deploy to environment, etc
+    --deploy - deploy to environment
+    --create - create a new machine
     --help - display this message
   """
 
@@ -13,8 +14,9 @@ defmodule Sip do
 
   defp parse_args(args) do
     {options, _, _} = OptionParser.parse(args,
-      switches: [ ops: :boolean,
-                 root: :boolean,
+      switches: [deploy: :string,
+                 create: :string,
+                 verbose: :boolean,
                  help: :boolean ]
     )
     options
@@ -26,8 +28,8 @@ defmodule Sip do
 
   def process(options) do
     case options do
-      [ops: true, deploy: _env] -> Sip.Deploy.deploy(options)
-      [root: true] -> Sip.Config.find_root
+      [deploy: _env] -> Sip.Deploy.deploy(options)
+      [create: _machine_name, verbose: _v] -> Sip.Ops.spawn_local_machine(options)
       [help: true] -> process([])
     end
   end

@@ -3,16 +3,16 @@ defmodule Sip.Utils do
   def run_command(cmd, verbose \\ false) do
        cmd
         |>String.split
-        |> isolate_args
-        |> execute
+        |> execute(verbose)
   end
 
-  defp isolate_args([head | tail ]) do
-    [head, tail]
-  end
-
-  defp execute([root | [args]]) do
-    System.cmd root, args, into: IO.stream(:stdio, :line)
+  defp execute([root | args], verbose) do
+    case verbose do
+      true ->
+        System.cmd root, args, into: IO.stream(:stdio, :line)
+      false ->
+        System.cmd root, args
+    end
   end
 
 end

@@ -1,7 +1,7 @@
 defmodule Sip.Deploy do
   @config Sip.Config.find_root
 
-  def deploy([ops: _, deploy: env]) do
+  def deploy([deploy: env]) do
     env
     |> deploy_to_environment
   end

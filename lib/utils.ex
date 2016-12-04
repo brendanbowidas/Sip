@@ -15,4 +15,9 @@ defmodule Sip.Utils do
     end
   end
 
+  def set_env(machine_name) do
+    {res, _} =  System.cmd "docker-machine", ["env", machine_name]
+    res
+  end
+
 end

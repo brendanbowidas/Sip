@@ -4,5 +4,4 @@ defmodule Sip.Ops do
     "docker-machine create -d virtualbox #{name}"
     |> Sip.Utils.run_command(verbose)
   end
-
 end

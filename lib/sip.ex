@@ -1,5 +1,8 @@
 defmodule Sip do
   @moduledoc """
+  
+    Welcome to Sip! ☕️
+
     Options:
     --deploy - deploy to environment
     --create - create a new machine

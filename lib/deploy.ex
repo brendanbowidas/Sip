@@ -1,5 +1,5 @@
 defmodule Sip.Deploy do
-  @config Sip.Config.find_root
+  @config Sip.Config.find_root |> Sip.Config.get_config
 
   def deploy([deploy: env]) do
     env

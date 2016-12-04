@@ -26,7 +26,7 @@ defmodule Sip do
 
   def process(options) do
     case options do
-      [ops: true, deploy: _env] -> Sip.Ops.deploy(options)
+      [ops: true, deploy: _env] -> Sip.Deploy.deploy(options)
       [root: true] -> Sip.Config.find_root
       [help: true] -> process([])
     end

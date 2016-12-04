@@ -1,8 +1,12 @@
 defmodule Sip.Config do
 
-  def get_config(root_dir) do
-    {_ok, file} = File.read(root_dir)
-    Poison.decode!(file)
+  def get_config(config_file) do
+    case config_file do
+      {:ok, file_path} ->
+        {_ok, file} = File.read(file_path)
+        Poison.decode(file)
+      {:error, msg} -> {:error, msg}
+    end
   end
 
   @doc """
@@ -21,7 +25,7 @@ defmodule Sip.Config do
     paths = Path.split(dir)
     file? = Path.join(paths ++ [".sip"])
     case File.exists?(file?) do
-      true -> file?
+      true -> {:ok, file?}
       false ->
         if length(paths) > 1 do
           paths
@@ -29,7 +33,7 @@ defmodule Sip.Config do
           |> Path.join
           |> traverse_path
         else
-          IO.puts "Couldn't find .sip file in this project!"
+          {:error, "Couldn't find .sip file in this project!"}
         end
 
     end

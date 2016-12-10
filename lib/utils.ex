@@ -1,6 +1,6 @@
 defmodule Sip.Utils do
 
-  def run_command(cmd, verbose \\ false) do
+  def run_command(cmd, verbose) do
        cmd
         |>String.split
         |> execute(verbose)
@@ -17,6 +17,7 @@ defmodule Sip.Utils do
 
   def set_env(machine_name) do
     {res, _} =  System.cmd "docker-machine", ["env", machine_name]
+    String.replace res, "\n", ""
     res
   end
 

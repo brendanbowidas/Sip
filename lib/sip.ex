@@ -20,8 +20,15 @@ defmodule Sip do
     {options, _, _} = OptionParser.parse(args,
       switches: [deploy: :string,
                  create: :string,
+                 start: :string,
+                 stop: :string,
                  verbose: :boolean,
-                 help: :boolean ]
+                 help: :boolean ],
+      aliases: [start: :start,
+                stop: :stop,
+                v: :verbose,
+                d: :deploy,
+                h: :help]
     )
     options
   end

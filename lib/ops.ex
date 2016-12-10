@@ -1,5 +1,7 @@
 defmodule Sip.Ops do
 
+  @config Sip.Config.find_root |> Sip.Config.get_config
+
   def spawn_local_machine([create: name, verbose: verbose]) do
     "docker-machine create -d virtualbox #{name}"
     |> Sip.Utils.run_command(verbose)
@@ -14,7 +16,19 @@ defmodule Sip.Ops do
   end
 
   defp machine_cmd(cmd, name, verbose) do
-    "docker-machine #{cmd} #{name}"
+    machine = check_config(name, @config)
+
+    "docker-machine #{cmd} #{machine}"
     |> Sip.Utils.run_command(verbose)
   end
+
+  defp check_config(env, {_ok, config}) do
+    case Map.has_key?(config, env) do
+      true ->
+        Map.get(config, env)
+      false ->
+        env
+    end
+  end
+
 end

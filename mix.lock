@@ -1,1 +1,2 @@
-%{"poison": {:hex, :poison, "3.0.0", "625ebd64d33ae2e65201c2c14d6c85c27cc8b68f2d0dd37828fde9c6920dd131", [:mix], []}}
+%{"key_value_parser": {:hex, :key_value_parser, "1.0.6", "16a47a8e4fa4eeb0673a24f3f0bf50149da5067751e080ada8c28a5dc2cb000f", [:mix], []},
+  "poison": {:hex, :poison, "3.0.0", "625ebd64d33ae2e65201c2c14d6c85c27cc8b68f2d0dd37828fde9c6920dd131", [:mix], []}}

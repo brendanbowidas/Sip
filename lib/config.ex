@@ -11,6 +11,7 @@ defmodule Sip.Config do
     end
   end
 
+
   @doc """
     Find '.sip' config file in the root directory from any child directory in the project
   """
@@ -18,6 +19,7 @@ defmodule Sip.Config do
     System.cwd
     |> traverse_project
   end
+
 
   @doc """
     traverse project directories recursively until the config file is found

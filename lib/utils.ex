@@ -6,6 +6,7 @@ defmodule Sip.Utils do
         |> execute(verbose)
   end
 
+
   defp execute([root | args], verbose) do
     case verbose do
       true ->
@@ -15,13 +16,15 @@ defmodule Sip.Utils do
     end
   end
 
+
   def set_env(machine_name) do
     {res, _} =  System.cmd "docker-machine", ["env", machine_name]
-    
+
     res
     |> format_env_vars
     |> System.put_env
   end
+
 
   @doc """
     Format string from "docker-machine env" command into a
@@ -38,6 +41,7 @@ defmodule Sip.Utils do
        {Atom.to_string(k), v}
      end)
   end
+
 
 # Filter out keys that don't begin with "DOCKER"
   defp is_docker_var({key, _val}) do

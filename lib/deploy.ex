@@ -2,10 +2,12 @@ defmodule Sip.Deploy do
   @root_dir Sip.Config.find_root
   @config @root_dir |> Sip.Config.get_config
 
+
   def deploy([deploy: env]) do
     env
     |> deploy_to_environment
   end
+
 
   defp deploy_to_environment(env) do
     config = is_valid(@config)
@@ -20,10 +22,12 @@ defmodule Sip.Deploy do
 
   end
 
+
   defp is_valid(config) do
     case config do
       {:ok, data} -> data
       {:error, msg} -> exit(msg)
     end
   end
+
 end

@@ -16,6 +16,7 @@ defmodule Sip do
     |> check_verbose
   end
 
+
   defp parse_args(args) do
     {options, _, _} = OptionParser.parse(args,
       switches: [deploy: :string,
@@ -33,9 +34,11 @@ defmodule Sip do
     options
   end
 
+
   def process([]) do
     IO.puts @moduledoc
   end
+
 
   def process(options) do
 
@@ -49,6 +52,7 @@ defmodule Sip do
     end
 
   end
+
 
   defp check_verbose(options) do
     cond do

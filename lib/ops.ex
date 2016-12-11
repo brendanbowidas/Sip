@@ -7,13 +7,16 @@ defmodule Sip.Ops do
     |> Sip.Utils.run_command(verbose)
   end
 
+
   def start_local_machine([verbose: verbose, start: name]) do
     machine_cmd("start", name, verbose)
   end
 
+
   def stop_local_machine([verbose: verbose, stop: name]) do
     machine_cmd("stop", name, verbose)
   end
+
 
   defp machine_cmd(cmd, name, verbose) do
     machine = check_config(name, @config)
@@ -21,6 +24,7 @@ defmodule Sip.Ops do
     "docker-machine #{cmd} #{machine}"
     |> Sip.Utils.run_command(verbose)
   end
+
 
   defp check_config(env, {_ok, config}) do
     case Map.has_key?(config, env) do

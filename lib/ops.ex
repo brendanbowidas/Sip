@@ -2,7 +2,7 @@ defmodule Sip.Ops do
 
   @config Sip.Config.find_root |> Sip.Config.get_config
 
-  def spawn_local_machine([create: name, verbose: verbose]) do
+  def spawn_local_machine([verbose: verbose, create: name]) do
     "docker-machine create -d virtualbox #{name}"
     |> Sip.Utils.run_command(verbose)
   end

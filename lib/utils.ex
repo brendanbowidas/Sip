@@ -1,18 +1,18 @@
 defmodule Sip.Utils do
 
-  def run_command(cmd, verbose) do
+  def run_command(cmd, verbose, dir \\ System.cwd) do
        cmd
         |>String.split
-        |> execute(verbose)
+        |> execute(verbose, dir)
   end
 
 
-  defp execute([root | args], verbose) do
+  defp execute([root | args], verbose, dir) do
     case verbose do
       true ->
-        System.cmd root, args, into: IO.stream(:stdio, :line)
+        System.cmd root, args, into: IO.stream(:stdio, :line), cd: dir
       false ->
-        System.cmd root, args
+        System.cmd root, args, cd: dir
     end
   end
 

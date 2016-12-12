@@ -16,7 +16,7 @@ defmodule Sip.Config do
     Find '.sip' config file in the root directory from any child directory in the project
   """
   def find_root do
-    System.cwd
+    find_root
     |> traverse_project
   end
 

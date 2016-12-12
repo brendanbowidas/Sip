@@ -43,11 +43,12 @@ defmodule Sip do
   def process(options) do
 
     case options do
-      [deploy: _env] -> Sip.Deploy.deploy(options)
+      [verbose: _v, deploy: _env] -> Sip.Deploy.deploy(options)
       [verbose: _v, start: _machine_name] -> Sip.Ops.start_local_machine(options)
       [verbose: _v, stop: _machine_name] -> Sip.Ops.stop_local_machine(options)
       [verbose: _v, create: _machine_name] -> Sip.Ops.spawn_local_machine(options)
       [help: true] -> process([])
+      [verbose: false] -> process([])
       [_, _] -> IO.puts "🚫  Unknown command! Run 'sip --help' for available options"
     end
 

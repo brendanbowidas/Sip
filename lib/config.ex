@@ -16,7 +16,7 @@ defmodule Sip.Config do
     Find '.sip' config file in the root directory from any child directory in the project
   """
   def find_root do
-    find_root
+    System.cwd
     |> traverse_project
   end
 
@@ -41,6 +41,16 @@ defmodule Sip.Config do
         end
     end
 
+  end
+
+  def project_dir(name) do
+    path =
+      System.user_home
+      |> Path.join(".sipconfig")
+      |> File.read!
+      |> Poison.decode!
+      |>Map.get(name)
+    {:ok, path}
   end
 
 end

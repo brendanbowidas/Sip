@@ -1,17 +1,13 @@
 defmodule Sip.Deploy do
-  @root_dir Sip.Config.find_root
-  @config @root_dir |> Sip.Config.get_config
 
-
-  def deploy([verbose: verbose, deploy: env]) do
-    env
-    |> deploy_to_environment(verbose)
+  def deploy([verbose: verbose, project: project, deploy: env]) do
+    deploy_to_environment(project, env, verbose)
   end
 
 
-  defp deploy_to_environment(env, verbose) do
-    config = is_valid(@config)
-    root = is_valid(@root_dir)
+  defp deploy_to_environment(project, env, verbose) do
+    root = is_valid(Sip.Config.project_dir(project))
+    {_, config} = Sip.Config.get_config({:ok, root})
     master_compose = Path.join(root, "/config/docker-compose.yml")
     frontend_dir = Path.join(root, "project/frontend")
 

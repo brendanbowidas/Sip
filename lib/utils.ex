@@ -26,6 +26,20 @@ defmodule Sip.Utils do
   end
 
 
+  def set_compose_env(project, env) do
+    {_ok, dir} = Sip.Config.project_dir(project)
+    env_vars =
+      dir
+      |> Path.join("config/env.#{env}")
+      |> File.read!
+      |> Poison.decode!
+
+    for {key, val} <- env_vars do
+      System.put_env(key, val)
+    end
+  end
+
+
   @doc """
     Format string from "docker-machine env" command into a
     list of key-value tuples
